@@ -1,5 +1,5 @@
 # about MyStore-React
-this is a project in progress works with my other project MyStoreServer-NestJs
+this is a project in progress that works along my other project MyStoreServer-NestJs.\
 the satart of the project is based on my Forms project and you can find out more information about the forms modification at it's <a href='https://github.com/LinoyHi/Forms'>readMe</a>
 
 # Getting Started with Create React App
