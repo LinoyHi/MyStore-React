@@ -8,12 +8,22 @@ import { Home } from "./components/Home/home";
 import ChangePassword from "./components/forms/changePassword";
 import PageNotFound from "./components/pageNotFound/PageNotFound";
 import VerifyToChange from "./components/forms/enterPassword";
+import { useState } from "react";
+import HeadNavbar from "./components/NavBar/NavBar";
 
 function App() {
+  const [search, setsearch] = useState('')
+
+  function changesearch(e) {
+    setsearch(e.target.value)
+  }
 
   return (
     <section>
-      <main>
+      <header>
+        <HeadNavbar searchfunc={changesearch}></HeadNavbar>
+      </header>
+      <main className="itemscenter">
         <Routes>
           <Route path='/' element={<LogIn></LogIn>}/>
           <Route path='/signup' element={<SignUp></SignUp>}/>
