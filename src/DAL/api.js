@@ -214,3 +214,14 @@ export async function changePassword(identifier,password){
         }, body: JSON.stringify({password})
     })
 }
+
+export async function getCatagories(){
+    const response = await fetch('http://localhost:4005/products/catagories', 
+    {credentials: 'include',
+     headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+    return response.json()
+}

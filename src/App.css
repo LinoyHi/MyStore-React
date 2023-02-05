@@ -11,21 +11,22 @@
   pointer-events: none;
 }
 
+.bg-purple {
+  background-image: url('https://images.pexels.com/photos/2719301/pexels-photo-2719301.jpeg?auto=compress&cs=tinysrgb&w=800');
+  background-size: cover;
+}
+
+.itemscenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10vw;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
