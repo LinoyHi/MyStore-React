@@ -78,7 +78,7 @@ function HeadNavbar(props) {
                     <i className={`bi bi-${user ? 'person-circle' : 'file-lock2'}`}></i>
                     <p className='pt-1'>{user ? 'Me' : 'Log In'}</p>
                 </Nav.Link>
-                <Nav.Link className='wish Nav-pointer fs-1 mb-3' onClick={user ? (e) => changePlace(e, '/wishList') : handleShow}>♥</Nav.Link> :
+                <Nav.Link className='wish Nav-pointer fs-1 mb-3' onClick={user ? (e) => changePlace(e, '/wishList') : handleShow}>♥</Nav.Link>
                 <img onClick={user ? (e) => changePlace(e, '/cart') : handleShow} className="Nav-pointer cart" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrCx3AWXDLIVCbAxLtSplwmlYIH-2FgkYfpcfYc2FICkR8qgAc2QFa&usqp=CAE&s' alt='cart button' />
                 <div className='d-flex col-12 col-lg-2'>
                     <NavDropdown className='col-3 col-md-2'
