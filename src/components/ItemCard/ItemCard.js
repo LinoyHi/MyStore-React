@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { addtowishlist, deleteFromWishlist } from '../../DAL/api';
 import { useSelector } from 'react-redux';
 import './ItemCard.css'
+import AddProductToCart from '../AddToCart/AddToCart';
 
 export default function ItemCard({ item, cart, removeItem }) {
     const [show, setShow] = useState(false);
@@ -76,7 +77,7 @@ export default function ItemCard({ item, cart, removeItem }) {
                     </Modal.Body>
                     : user ?
                         <Modal.Body>
-                            add to cart data
+                            <AddProductToCart id={item.id}></AddProductToCart>
                         </Modal.Body>
                         :
                         <Modal.Body>
