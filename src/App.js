@@ -27,7 +27,7 @@ function App() {
         <Routes>
           <Route path='/' element={<LogIn></LogIn>}/>
           <Route path='/signup' element={<SignUp></SignUp>}/>
-          <Route path='/home' element={<Home></Home>}/>
+          <Route path='/home' element={<Home searched={search}></Home>}/>
           <Route path='/authorize' element={<VerifyToChange></VerifyToChange>}></Route>
           <Route path='/changepassword' element={<ChangePassword></ChangePassword>}/>
           <Route path="/:catchAll" element={<PageNotFound></PageNotFound>}/>

@@ -225,3 +225,47 @@ export async function getCatagories(){
     })
     return response.json()
 }
+
+export async function getProducts() {
+    const response = await fetch('http://localhost:4005/products', {
+        credentials: 'include'
+        , headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+    return await response.json()
+}
+
+export async function getbyCategory(category) {
+    const response = await fetch(`http://localhost:4005/products/category/${category}`, {
+        credentials: 'include'
+        , headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+    return await response.json()
+}
+
+export async function addtowishlist(itemid,user) {
+    const response = await fetch(`http://localhost:4005/wishlist`, {
+        credentials: 'include', method: 'POST'
+        , headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }, body: JSON.stringify({ product: itemid, user })
+    })
+    return await response.json()
+}
+
+export async function deleteFromWishlist(itemid,user) {
+    const response = await fetch(`http://localhost:4005/wishlist`, {
+        credentials: 'include', method: 'DELETE'
+        , headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }, body: JSON.stringify({ product: itemid, user })
+    })
+    return await response.json()
+}
