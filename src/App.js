@@ -10,6 +10,7 @@ import PageNotFound from "./components/pageNotFound/PageNotFound";
 import VerifyToChange from "./components/forms/enterPassword";
 import { useState } from "react";
 import HeadNavbar from "./components/NavBar/NavBar";
+import Footer from "./components/Footer/footer";
 
 function App() {
   const [search, setsearch] = useState('')
@@ -33,6 +34,9 @@ function App() {
           <Route path="/:catchAll" element={<PageNotFound></PageNotFound>}/>
         </Routes>
       </main>
+      <footer>
+        <Footer></Footer>
+      </footer>
     </section>
     );
   }
