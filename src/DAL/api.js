@@ -269,3 +269,25 @@ export async function deleteFromWishlist(itemid,user) {
     })
     return await response.json()
 }
+
+export async function addToCart(id, quantity, user) {
+    const response = await fetch(`http://localhost:4005/products/${id}`, {
+        credentials: 'include', method: 'POST'
+        , headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }, body: JSON.stringify({ quantity, user })
+    })
+    return await response.json()
+}
+
+export async function getSpecificItem(id) {
+    const response = await fetch(`http://localhost:4005/products/${id}`, {
+        credentials: 'include'
+        , headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+    return await response.json()
+}
