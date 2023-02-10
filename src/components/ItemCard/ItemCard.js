@@ -48,7 +48,7 @@ export default function ItemCard({ item, cart, removeItem }) {
             />
             </Link>
             <div>
-                <div className='add-to-cart'>
+                <div className='absolute-top'>
                     {item.inventory ?
                         <button className='addToCart' onClick={handleShow}>
                             {cart ? 'remove from cart' : 'add to cart'}
@@ -56,12 +56,12 @@ export default function ItemCard({ item, cart, removeItem }) {
                         cart ?
                             <>
                                 <button className='addToCart' onClick={handleShow}>remove from cart</button>
-                                <p className='add-to-cart outofstock'>out of stock</p>
+                                <p className='absolute-top outofstock'>out of stock</p>
                             </> :
-                            <p className='add-to-cart outofstock pe-1'>out of stock</p>}
+                            <p className='absolute-top outofstock pe-1'>out of stock</p>}
                     {cart ? <input type='number' onClick={(e) => item.oninput(e, item.productid, item.place)} defaultValue={item.amount} min='1' max={item.inventory}></input> : ''}
                 </div>
-                <button className={`add-to-cart wishlist ${item.wish ? 'red' : ''}`} onClick={(e) => addOrRemove(e)}>♥</button>
+                <button className={`absolute-top wishlist ${item.wish ? 'red' : ''}`} style={{right:'0'}} onClick={(e) => addOrRemove(e)}>♥</button>
             </div>
             <div className='card-body'>
                 <h5>{item.name}</h5>
