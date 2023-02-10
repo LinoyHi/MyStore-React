@@ -7,23 +7,20 @@ import './addToCart.css'
 export default function AddProductToCart(props) {
     const userData = useSelector(state => state.user)
     const [item, setItem] = useState(null)
-    const [buy, setbuy] = useState({ color: null, size: null, amount: 1, prod: [], TotalPrice: 0 })
+    const [buy, setbuy] = useState({ color: null, size: null, amount: 1, prod: [] })
     const [stock, setstock] = useState(null)
     const [itemAnimation, setItemAnimation] = useState(null)
 
     useEffect(() => async function set() {
-        let Item = props.item
-        if (!Item) {
-            Item = await getSpecificItem(props.id)
+        let newItem = props.item
+        if (!props.item) {
+            newItem = await getSpecificItem(props.id)
         }
-        setItem(Item)
-        if (Item.prodDet.length === 1) {
-            const prod = Item.prodDet[0]
-            setbuy({prod: [prod.id], color: prod.color, size: prod.size, amount: 1, TotalPrice: Item.price })
+        setItem(newItem)
+        if (newItem.prodDet.length === 1) {
+            const prod = newItem.prodDet[0]
+            setbuy({ prod: [prod.id], color: prod.color, size: prod.size, amount: 1 })
             setstock(prod.quantity)
-        }
-        else{
-            setbuy({...buy, TotalPrice: Item.price})
         }
     }, [])
 
@@ -41,7 +38,9 @@ export default function AddProductToCart(props) {
                     const cart = document.getElementById('Headcart')
                     cart?.classList.add('cartAnimation')
                     setItemAnimation(
-                        <div style={{ zIndex: '1000000', position: 'fixed', top:'5px' }}>
+                        <div style={{ zIndex: '1000000', 
+                        position: 'fixed', 
+                        top:'40%' }}>
                             <img className="addToCartAnimation"
                                 src={item.mainImg}
                                 alt={`${item.productName} main photo`}></img>
@@ -102,40 +101,26 @@ export default function AddProductToCart(props) {
         setbuy(newbuy)
     }
 
-    const changeAmount= (e) => {
-        let amount = e.target.value
-        if(amount>stock){
-            e.target.value = stock
-            amount = stock
-        }
-        const newbuy = { ...buy }
-        newbuy.amount = amount
-        newbuy.TotalPrice = amount * item.price
-        setbuy(newbuy)
-    }
-
     return (item ?
         <div className={`d-flex flex-column ${!props.cancelBG && 'bg-purple'} align-items-center`}>
             {itemAnimation && itemAnimation}
             <h5 className="color-white">{item.productName}</h5>
             <span className="card-body">price: {item.price}$ | in stock: {stock || stock == 0 ? stock : item.inventory}</span>
-            <FormGroupType type='button' value={item.sizes.length == 1 ? item.sizes[0] : ''} changeButton={changebutton} 
-                label='size' name='size'
-                eror='' validate={{}} options={item.sizes}></FormGroupType>
+            <FormGroupType type='button' value={item.sizes.length == 1 ? item.sizes[0] : ''} changeButton={changebutton} label='size' name='size'
+                eror='' options={item.sizes}></FormGroupType>
             <br />
             <FormGroupType type='button' value={item.colors.length == 1 ? item.colors[0] : ''} changeButton={changebutton} label='color' name='color'
-                eror='' validate={{}} options={item.colors}></FormGroupType>
+                eror='' options={item.colors}></FormGroupType>
             <br />
             <div className="d-flex justify-content-between">
                 <button name='addToCart' onClick={addtocart}
                     className='addToCart me-2' disabled={stock === 0 ? true : false}>{stock === 0 ? 'out of stock' : 'add to cart'}</button>
-                <input className='addToCartInput me-2' name={`amount${item.id}`} type='number' defaultValue='1' min='1'
-                    max={stock ? stock : 1} onChange={changeAmount}>
-                </input>
-                <div className='addToCartInput text-center color-white'>
-                    <h5>Total Price:</h5>
-                    <span>{buy.TotalPrice}$</span>
-                </div>
+                <input className='addToCartInput' name={`amount${item.id}`} type='number' defaultValue='1' min='1'
+                    max={stock ? stock : 1} onChange={(e) => {
+                        const newbuy = { ...buy }
+                        newbuy.amount = e.target.value
+                        setbuy(newbuy)
+                    }}></input>
             </div>
         </div> :
         <p>please wait..</p>
