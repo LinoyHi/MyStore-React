@@ -4,38 +4,11 @@
     text-align: center;
 }
 
-.wishlist {
-    font-size: 1.7vw;
-    right: 0;
-    border-radius: 80px;
-    height: 3vw !important;
-    width: 3vw;
-    padding-left: 0.75vw;
-}
-
 .addToCartInput {
     width: 7vw;
     height: 7vw;
     margin-bottom: 0;
     font-size: xx-large;
-}
-
-.wishlist:hover {
-    color: rgb(172, 14, 14);
-    border-color: rgb(189, 21, 21);
-}
-
-.card-img-top {
-    aspect-ratio : 1 / 0.7;
-    border-radius: 5px;
-}
-
-.add-to-cart {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    z-index: 2;
-    display: flex;
 }
 
 .addToCart {
@@ -62,15 +35,11 @@
     text-shadow: -3px 3px 3px black;
 }
 
-.add-to-cart input {
+.absolute-top input {
     width: 2.6vw;
 }
 
 @media (max-width:991px) {
-    .card-img-top {
-        aspect-ratio : 1 / 1;
-    }
-
     .addToCartInput {
         width: 15vw;
         height: 15vw;
@@ -80,13 +49,6 @@
     .outofstock {
         font-size: xx-large;
         margin-left: 17vw;
-    }
-
-    .wishlist {
-        font-size: xxx-large;
-        padding-left: 2vw;
-        width: 8vw;
-        height: 8vw !important;
     }
 
     .addToCart {
@@ -100,14 +62,6 @@
     }
 }
 
-@media (max-width: 850px) {
-    .wishlist{
-        width: 10vw;
-        height: 10vw !important;
-        padding-left: 2.5vw;
-    }
-}
-
 @media (max-width: 715px) {
     .addToCart, .addToCartInput {
         width: 16vw;
@@ -116,12 +70,6 @@
 }
 
 @media (max-width: 675px) {
-    .wishlist{
-        width: 12vw;
-        height: 12vw !important;
-        padding-left: 3vw;
-    }
-
     .addToCart, .addToCartInput {
         width: 19vw;
         height: 19vw;
@@ -132,14 +80,6 @@
     .outofstock {
         font-size: xxx-large;
         margin-left: 35vw;
-    }
-
-    .wishlist {
-        font-size: xxx-large;
-        width: 16vw;
-        height: 16vw !important;
-        padding-left: 4.3vw;
-
     }
 
     .card-body, h5{
@@ -156,32 +96,9 @@
     }
 }
 
-@media (max-width: 450px) {
-    .wishlist{
-        width: 20vw;
-        height: 20vw !important;
-        font-size: xxx-large;
-        padding-left: 5.5vw;
-        padding-top: 1.3vw;
-    }
-}
-
-@media (max-width: 360px){
-    .wishlist{
-        padding-top: 0;
-        padding-left: 4.5vw;
-    }
-}
-
 @media (max-width: 330px) {
     .addToCart, .addToCartInput{
         width: 32vw;
         height: 32vw;
-    }
-
-    .wishlist{
-        width: 26vw;
-        height: 26vw !important;
-        padding-left: 5vw;
     }
 }
