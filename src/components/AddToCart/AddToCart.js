@@ -107,10 +107,10 @@ export default function AddProductToCart(props) {
             <h5 className="color-white">{item.productName}</h5>
             <span className="card-body">price: {item.price}$ | in stock: {stock || stock == 0 ? stock : item.inventory}</span>
             <FormGroupType type='button' value={item.sizes.length == 1 ? item.sizes[0] : ''} changeButton={changebutton} label='size' name='size'
-                eror='' options={item.sizes}></FormGroupType>
+                eror='' validate={{}} options={item.sizes}></FormGroupType>
             <br />
             <FormGroupType type='button' value={item.colors.length == 1 ? item.colors[0] : ''} changeButton={changebutton} label='color' name='color'
-                eror='' options={item.colors}></FormGroupType>
+                eror='' validate={{}} options={item.colors}></FormGroupType>
             <br />
             <div className="d-flex justify-content-between">
                 <button name='addToCart' onClick={addtocart}
