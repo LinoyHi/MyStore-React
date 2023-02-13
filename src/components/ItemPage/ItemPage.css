@@ -1,0 +1,10 @@
+.allreviews {
+    color: blue;
+    cursor: pointer;
+}
+
+@media (max-width: 991px){
+    .not-lg-w-100{
+        width: 100% !important;
+    }
+}
