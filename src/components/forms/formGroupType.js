@@ -61,7 +61,7 @@ function FormGroupType(props) {
             </>)
         }
         else if (props.type === 'option') {
-            return (<Form.Control onKeyDown={onKey} onClick={(e) => props.optioneror(e, props.name)} defaultValue={props.value} as='select'>
+            return (<Form.Control onKeyDown={onKey} onClick={props.optionFunc} name={props.name} defaultValue={props.value} as='select'>
                 <option value=''>{props.placeholder}</option>
                 {returnOptions('option')}
             </Form.Control>)
@@ -99,7 +99,7 @@ function FormGroupType(props) {
             <InputGroup>
                 <InputGroup.Text className={`bi bi-${props.iconName}`}>{props.iconName ? '' : props.label}</InputGroup.Text>
                 {type()}
-                {props.validate.require ? <span className="red star">*</span> : ''}
+                {props.validate?.require ? <span className="red star">*</span> : ''}
             </InputGroup>
             <ErorMessage id={props.id} eror={props.eror}></ErorMessage>
         </Form.Group>
