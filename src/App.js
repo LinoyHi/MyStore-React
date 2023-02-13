@@ -29,7 +29,7 @@ function App() {
           <Route path='/' element={<LogIn></LogIn>} />
           <Route path='/signup' element={<SignUp></SignUp>} />
           <Route path='/home' element={<Home searched={search}></Home>}>
-            <Route path=":type" element={<Home searched={search}></Home>}></Route>
+            <Route path=":category" element={<Home searched={search}></Home>}></Route>
           </Route>
           <Route path='/authorize' element={<VerifyToChange></VerifyToChange>}></Route>
           <Route path='/changepassword' element={<ChangePassword></ChangePassword>} />
