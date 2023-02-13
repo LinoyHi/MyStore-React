@@ -10,13 +10,13 @@ export function Home(props) {
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const [items, setitems] = useState(null)
-    const { type } = useParams()
+    const { category } = useParams()
     const search = props.searched?.toLowerCase() || ''
 
     async function getInfofromapi() {
         const currentitems = []
-        if (type) {
-            const items = await getbyCategory(type)
+        if (category) {
+            const items = await getbyCategory(category)
             for (const i of items) {
                 if (i.productName.toLowerCase().includes(search) || i.description.toLowerCase().includes(search)) {
                     currentitems.push(i)
@@ -34,7 +34,7 @@ export function Home(props) {
         }
     }
 
-    useEffect(() => { getInfofromapi() }, [type, search])
+    useEffect(() => { getInfofromapi() }, [category, search])
 
 
     return (
