@@ -8,12 +8,14 @@ import { useParams } from 'react-router-dom'
 import AddProductToCart from '../AddToCart/AddToCart';
 import { Table } from 'react-bootstrap';
 import { Reviews } from './ReviewsPage';
+import { useSelector } from 'react-redux';
 
 export default function ItemPage(props) {
     const { id } = useParams()
     const [item, setItem] = useState(null)
     const [show, setShow] = useState(true);
     const [reviews, setReviews] = useState(null)
+    const { user } = useSelector((state) => state.user);
 
     useEffect(() => async function set() {
         setItem(await getSpecificItem(id | props.id))
@@ -44,14 +46,13 @@ export default function ItemPage(props) {
     const handleShow = () => setShow(false);
 
     function addOrRemove(e) {
-        if (userData.user) {
+        if (user) {
             if (e.target.classList.contains('red')) {
-                deleteFromWishlist(props.id, userData.user)
-                props.update ? props.update() :
-                    e.target.classList.remove('red')
+                deleteFromWishlist(item.id, user)
+                e.target.classList.remove('red')
             }
             else {
-                addtowishlist(props.id, userData.user)
+                addtowishlist(item.id, user)
                 e.target.classList.add('red')
             }
         }

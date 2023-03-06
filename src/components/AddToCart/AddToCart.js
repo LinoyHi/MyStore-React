@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
+import { useLocation } from "react-router-dom"
 import { addToCart, getSpecificItem } from "../../DAL/api"
 import FormGroupType from "../forms/formGroupType"
 import './addToCart.css'
 
 export default function AddProductToCart(props) {
+    const url = useLocation().pathname
     const userData = useSelector(state => state.user)
     const [item, setItem] = useState(null)
     const [buy, setbuy] = useState({ color: null, size: null, amount: 1, prod: [] })
@@ -38,15 +40,20 @@ export default function AddProductToCart(props) {
                     const cart = document.getElementById('Headcart')
                     cart?.classList.add('cartAnimation')
                     setItemAnimation(
-                        <div style={{ zIndex: '1000000', 
-                        position: 'fixed', 
-                        top:'40%' }}>
+                        <div style={{
+                            zIndex: '1000000',
+                            position: 'fixed',
+                            top: '40%'
+                        }}>
                             <img className="addToCartAnimation"
                                 src={item.mainImg}
                                 alt={`${item.productName} main photo`}></img>
                         </div>
                     )
-                    setTimeout(() => { setItemAnimation(null); cart?.classList.remove('cartAnimation');}, 1000)
+                    setTimeout(() => { setItemAnimation(null); cart?.classList.remove('cartAnimation'); }, 1000)
+                    if (url.includes('cart')){
+                        window.location.reload()
+                    }
                 }
                 else {
                     alert('something went wrong please try again latter')

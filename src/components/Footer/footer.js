@@ -1,5 +1,48 @@
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
+import { useLocation } from "react-router-dom"
+import { getRecommendedBasedOnCart } from "../../DAL/api"
+import ItemCard from "../ItemCard/ItemCard"
+
 export default function Footer() {
+    const url = useLocation().pathname
+    const [recomended,setrecommended]= useState(null)
+    const {user} = useSelector((state) => state.user)
+
+    useEffect(()=>{
+        async function getRecomended(){
+            const recItems = await getRecommendedBasedOnCart(user.name)
+            if(recItems.recommend[0]){
+                recItems.wishlist = recItems.wishlist.map(a=>a.product.id)
+                const recomendedItems = []
+                for(const item of recItems.recommend){
+                    if(item.inventory){
+                        if(recItems.wishlist.includes(item.id)){
+                            item.wish = true
+                        }
+                        recomendedItems.push(item)
+                    }
+                }
+                setrecommended(recomendedItems)
+            }
+        } 
+        url.includes('cart') && getRecomended()
+    },[url])
+
     return (
+        url.includes('cart') ? 
+        <footer className="text-center pb-5">
+            <p>maybe you'd also be intrested in:</p>
+            <div className='row w-100 justify-content-center row-cols-3 row-cols-lg-6 pb-5'>
+                {recomended?.length ? recomended.map((item, index) => 
+                <ItemCard key={index} cancelWishButton={true} useCartIcon={true} onlyPrice={true} item={item}></ItemCard>)
+                : <h6 className="red">no current recommends</h6>
+            }
+            </div>
+            <br/>
+            <br/>
+        </footer>
+        :
         <footer className="text-center text-lg-start bg-light text-muted">
             <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
                 <div className="me-5 d-none d-lg-block">

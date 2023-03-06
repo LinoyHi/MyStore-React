@@ -12,6 +12,7 @@ import { useState } from "react";
 import HeadNavbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/footer";
 import ItemPage from "./components/ItemPage/ItemPage";
+import Cart from "./components/Cart/cart";
 
 function App() {
   const [search, setsearch] = useState('')
@@ -33,6 +34,7 @@ function App() {
             <Route path=":category" element={<Home searched={search}></Home>}></Route>
           </Route>
           <Route path='/item/:id' element={<ItemPage></ItemPage>} />
+          <Route path='/cart' element={<Cart></Cart>} />
           <Route path='/authorize' element={<VerifyToChange></VerifyToChange>}></Route>
           <Route path='/changepassword' element={<ChangePassword></ChangePassword>} />
           <Route path="/:catchAll" element={<PageNotFound></PageNotFound>} />
