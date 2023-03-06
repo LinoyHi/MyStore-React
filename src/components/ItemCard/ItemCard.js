@@ -69,11 +69,11 @@ export default function ItemCard({ item, cart, removeItem, ArrayPlace, cancelWis
                 </div>
                 {!cancelWishButton && <button className={`absolute-top wishlist ${item.wish ? 'red' : ''}`} style={{ right: '0' }} onClick={(e) => addOrRemove(e)}>♥</button>}
             </div>
-            {!cart && onlyPrice? <h5>{item.price}$</h5>:<div className='card-body'>
+            {!cart && (onlyPrice? <h5>{item.price}$</h5>:<div className='card-body'>
                 <h5>{item.productName}</h5>
                 <span>price: {item.price}$</span><br />
                 <span>{item.quantity ? `amount: ${item.quantity}` : `in stock: ${item.inventory}`}</span>
-            </div>}
+            </div>)}
             <Modal className='itemsCenter' style={{ color: 'black' }} show={show} onHide={handleClose}>
                 {cart ?
                     <Modal.Body>
