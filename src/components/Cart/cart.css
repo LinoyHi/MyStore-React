@@ -1,0 +1,42 @@
+.buyButton {
+    text-decoration: none !important;
+    color: white;
+    text-shadow: 1px 1px 3px black;
+    background-color: rgb(171, 89, 209);
+    padding: 0.3vw;
+    border: 3px solid rgb(60, 0, 100);
+    border-bottom: 3px solid rgb(124, 0, 247);
+    border-left: 3px solid rgb(124, 0, 247);
+}
+
+.buyButton:focus {
+    border: 3px solid rgb(124, 0, 247);
+    border-bottom: 3px solid rgb(60, 0, 100);
+    border-left: 3px solid rgb(60, 0, 100);
+}
+
+.buyButton:hover {
+    color: black
+}
+
+.quantityButton{
+    cursor: pointer;
+    text-shadow: 1px 1px 3px black;
+    background-color: white;
+    padding: 0.3vw;
+    border: 2px solid rgb(60, 0, 100);
+    border-bottom: 2px solid rgb(124, 0, 247);
+    border-left: 2px solid rgb(124, 0, 247);   
+}
+
+@media (max-width: 991px){
+    .not-lg-w-100{
+        width: 100% !important;
+    }
+}
+
+@media (min-width: 700px){
+    .fs-6{
+        font-size: x-large !important;
+    }
+}

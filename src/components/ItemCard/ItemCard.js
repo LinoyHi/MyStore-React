@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import './ItemCard.css'
 import AddProductToCart from '../AddToCart/AddToCart';
 
-export default function ItemCard({ item, cart, removeItem }) {
+export default function ItemCard({ item, cart, removeItem, ArrayPlace, cancelWishButton, useCartIcon, onlyPrice }) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -41,34 +41,39 @@ export default function ItemCard({ item, cart, removeItem }) {
         <div className='card bg-purple p-1' id={item.id}>
             <Link to={`/item/${item.id}`}>
                 <img
-                className='card-img-top'
-                style={!item.inventory ? { opacity: '0.6' } : {}}
-                src={item.mainImg}
-                alt={`${item.name} main img`}
-            />
+                    className='card-img-top'
+                    style={!item.inventory ? { opacity: '0.6' } : {}}
+                    src={item.mainImg}
+                    alt={`${item.name} main img`}
+                />
             </Link>
             <div>
                 <div className='absolute-top'>
                     {item.inventory ?
-                        <button className='addToCart' onClick={handleShow}>
-                            {cart ? 'remove from cart' : 'add to cart'}
-                        </button> :
-                        cart ?
+                        (cart ?
+                            <i className="bi bi-trash3-fill red fs-1 textBorder-White" alt='remove from cart' onClick={handleShow}></i>
+                            :
+                            useCartIcon ? <i className='bi bi-bag-plus fs-2 textBorder-White' style={{cursor:'pointer'}} onClick={handleShow}>
+                             </i>
+                            :
+                            <button className='addToCart' onClick={handleShow}>
+                                add to cart
+                            </button>)
+                        : (cart ?
                             <>
-                                <button className='addToCart' onClick={handleShow}>remove from cart</button>
+                                <i className="bi bi-trash3-fill red fs-1 textBorder-White"  onClick={handleShow}></i>
                                 <p className='absolute-top outofstock'>out of stock</p>
                             </> :
-                            <p className='absolute-top outofstock pe-1'>out of stock</p>}
-                    {cart ? <input type='number' onClick={(e) => item.oninput(e, item.productid, item.place)} defaultValue={item.amount} min='1' max={item.inventory}></input> : ''}
+                            <p className='absolute-top outofstock pe-1'>out of stock</p>)
+                        }
                 </div>
-                <button className={`absolute-top wishlist ${item.wish ? 'red' : ''}`} style={{right:'0'}} onClick={(e) => addOrRemove(e)}>♥</button>
+                {!cancelWishButton && <button className={`absolute-top wishlist ${item.wish ? 'red' : ''}`} style={{ right: '0' }} onClick={(e) => addOrRemove(e)}>♥</button>}
             </div>
-            <div className='card-body'>
-                <h5>{item.name}</h5>
-                {!cart ? <><span>price: {item.price}$</span><br />
-                    <span>{item.quantity ? `amount: ${item.quantity}` : `in stock: ${item.inventory}`}</span></> : ''}
-
-            </div>
+            {!cart && onlyPrice? <h5>{item.price}$</h5>:<div className='card-body'>
+                <h5>{item.productName}</h5>
+                <span>price: {item.price}$</span><br />
+                <span>{item.quantity ? `amount: ${item.quantity}` : `in stock: ${item.inventory}`}</span>
+            </div>}
             <Modal className='itemsCenter' style={{ color: 'black' }} show={show} onHide={handleClose}>
                 {cart ?
                     <Modal.Body>
@@ -84,7 +89,7 @@ export default function ItemCard({ item, cart, removeItem }) {
                             please log in and try again
                         </Modal.Body>}
                 <Modal.Footer>
-                    <Button variant="primary" onClick={cart ? () => { removeItem(item.productid); handleClose() } : user ? handleClose : login}>
+                    <Button variant="primary" onClick={cart ? () => { removeItem(item.productid, ArrayPlace); handleClose() } : user ? handleClose : login}>
                         {cart ? 'yes' : user ? 'close' : 'Log in'}
                     </Button>
                     {user ? '' : <Button variant="secondary" onClick={handleClose}>

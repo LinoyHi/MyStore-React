@@ -291,3 +291,35 @@ export async function getSpecificItem(id) {
     })
     return await response.json()
 }
+
+export async function getCart(username) {
+    const cart = await fetch(`http://localhost:4005/cart/${username}`, {
+        credentials: 'include'
+        , headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+    return await cart.json()
+}
+
+export async function getRecommendedBasedOnCart(username) {
+    const cart = await fetch(`http://localhost:4005/cart/recommended/${username}`, {
+        credentials: 'include'
+        , headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+    return await cart.json()
+}
+
+export async function removeProductFromCart(id) {
+    return await fetch(`http://localhost:4005/cart/${id}`, {
+        credentials: 'include', method: 'DELETE'
+        , headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+}
